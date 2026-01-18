@@ -1,13 +1,13 @@
 import { use } from "react";
-import MyContainer from "./MyContainer";
-import { ThemeContext } from "./../Providers/ThemeContext";
+import { ThemeContext } from "../../Providers/ThemeContext";
 import { IoMdMoon, IoMdSunny } from "react-icons/io";
 import { MdOutlineFileDownload } from "react-icons/md";
-import { NavLink } from "react-router";
+import { Link, NavLink } from "react-router";
 import { RiMenu2Line } from "react-icons/ri";
+import MyContainer from "../MyContainer/MyContainer";
 
 const Navbar = () => {
-  const { isDark, toggleTheme } = use(ThemeContext);
+  const { toggleTheme } = use(ThemeContext);
   const Links = (
     <>
       <NavLink
@@ -18,8 +18,8 @@ const Navbar = () => {
         after:h-0.5 after:transition-all after:duration-300 
         ${
           isActive
-            ? "after:w-full dark:after:bg-orange-400 font-semibold text-blue-600 dark:text-orange-400"
-            : "after:w-0 after:bg-orange-600 dark:after:bg-orange-400 hover:after:w-full hover:text-blue-600 dark:hover:text-orange-400"
+            ? "after:w-full dark:after:bg-orange-400 font-semibold  dark:text-orange-400"
+            : "after:w-0 after:bg-orange-600 dark:after:bg-orange-400 hover:after:w-full  dark:hover:text-orange-400"
         }`
         }
       >
@@ -34,8 +34,8 @@ const Navbar = () => {
         after:h-0.5 after:transition-all after:duration-300 
         ${
           isActive
-            ? "after:w-full after:bg-orange-600 dark:after:bg-orange-400 font-semibold text-blue-600 dark:text-orange-400"
-            : "after:w-0 after:bg-orange-600 dark:after:bg-orange-400 hover:after:w-full hover:text-blue-600 dark:hover:text-orange-400"
+            ? "after:w-full after:bg-orange-600 dark:after:bg-orange-400 font-semibold dark:text-orange-400"
+            : "after:w-0 after:bg-orange-600 dark:after:bg-orange-400 hover:after:w-full dark:hover:text-orange-400"
         }`
         }
       >
@@ -51,8 +51,8 @@ const Navbar = () => {
         after:h-0.5 after:transition-all after:duration-300 
         ${
           isActive
-            ? "after:w-full after:bg-orange-600 dark:after:bg-orange-400 font-semibold text-blue-600 dark:text-orange-400"
-            : "after:w-0 after:bg-orange-600 dark:after:bg-orange-400 hover:after:w-full hover:text-blue-600 dark:hover:text-orange-400"
+            ? "after:w-full after:bg-orange-600 dark:after:bg-orange-400 font-semibold dark:text-orange-400"
+            : "after:w-0 after:bg-orange-600 dark:after:bg-orange-400 hover:after:w-full  dark:hover:text-orange-400"
         }`
         }
       >
@@ -93,12 +93,14 @@ const Navbar = () => {
               </div>
               <ul
                 tabIndex="-1"
-                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow font-medium"
+                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow font-medium pl-4 space-y-1.5"
               >
                 {Links}
               </ul>
             </div>
-            <a className="text-xl font-bold hidden md:flex">S-Code</a>
+            <Link to="/" className="text-xl font-bold hidden md:flex">
+              S-<span className="text-orange-400">Code</span>
+            </Link>
           </div>
           <div className="navbar-center hidden md:flex">
             <ul className="menu menu-horizontal px-1 flex gap-5 items-center font-medium">
@@ -110,19 +112,17 @@ const Navbar = () => {
               download Cv <MdOutlineFileDownload size={18} />
             </a>
             <div className="ml-4">
-              {isDark ? (
-                <div className="text-[#EBD8BA] shadow">
-                  <IoMdMoon size={20} onClick={toggleTheme} />
-                </div>
-              ) : (
-                <div className="cursor-pointer">
-                  <IoMdSunny
-                    size={20}
-                    className="text-orange-400"
-                    onClick={toggleTheme}
-                  />
-                </div>
-              )}
+              <label className="toggle text-base-content">
+                <input
+                  onClick={toggleTheme}
+                  type="checkbox"
+                  value="synthwave"
+                  className="theme-controller"
+                />
+                <IoMdMoon />
+
+                <IoMdSunny />
+              </label>
             </div>
           </div>
         </div>

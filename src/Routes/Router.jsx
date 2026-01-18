@@ -23,7 +23,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/contactUs",
-        element: <h2>About</h2>,
+        element: <h2>Contact Me</h2>,
       },
       {
         path: "*",
